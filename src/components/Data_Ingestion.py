@@ -8,6 +8,12 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
+from src.components.Data_Transformation import Datatransformationconfig
+from src.components.Data_Transformation import DataTransformation
+
+from src.components.Model_Trainer import ModelTrainerConfig
+from src.components.Model_Trainer import ModelTrainer
+
 @dataclass
 class DataIngestionConfig:
     train_data_path : str=os.path.join("artifact","train.csv")
@@ -41,3 +47,9 @@ class DataIngestion:
 if __name__ == "__main__":
     obj = DataIngestion()
     train_data, test_data = obj.initiate_data_ingestion()
+
+    obj2 = DataTransformation()
+    train_data, test_data, preprocessor_path = obj2.initiate_data_tranformation(train_data,test_data)
+
+    obj3 = ModelTrainer()
+    print(obj3.initiate_model_trainer(train_data,test_data))

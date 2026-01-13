@@ -83,6 +83,3 @@ class DataTransformation:
         except Exception as e:
             raise CustomException(e,sys)
         
-if __name__ == "__main__":
-    obj = DataTransformation()
-    train_data, test_data, preprocessor_path = obj.initiate_data_tranformation("artifact/train.csv","artifact/test.csv")
